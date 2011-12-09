@@ -8,12 +8,11 @@ package ecologylab.translators.java.generics;
  * Copyright (2011) Interface Ecology Lab.
  */
 
-import ecologylab.serialization.ElementState;
 import ecologylab.serialization.annotations.Hint;
-import ecologylab.serialization.annotations.simpl_collection;
 import ecologylab.serialization.annotations.simpl_hints;
 import ecologylab.serialization.annotations.simpl_inherit;
 import ecologylab.serialization.annotations.simpl_scalar;
+import ecologylab.translators.java.generics.Search;
 import ecologylab.translators.java.generics.SearchResult;
 import java.lang.String;
 import java.util.ArrayList;
@@ -21,35 +20,36 @@ import java.util.List;
 import java.util.Map;
 
 @simpl_inherit
-public class Search<T extends SearchResult> extends ElementState
+public class TypedSocialSearch<SSR extends SocialSearchResult> extends Search<SSR>
 {
 	@simpl_scalar
 	@simpl_hints({Hint.XML_ATTRIBUTE})
-	private String query;
+	private String serviceId;
 
-	@simpl_collection("search_result")
-	private List<T> searchResults;
+	@simpl_scalar
+	@simpl_hints({Hint.XML_ATTRIBUTE})
+	private long userId;
 
-	public Search()
+	public TypedSocialSearch()
 	{ }
 
-	public String getQuery()
+	public String getServiceId()
 	{
-		return query;
+		return serviceId;
 	}
 
-	public void setQuery(String query)
+	public void setServiceId(String serviceId)
 	{
-		this.query = query;
+		this.serviceId = serviceId;
 	}
 
-	public List<T> getSearchResults()
+	public long getUserId()
 	{
-		return searchResults;
+		return userId;
 	}
 
-	public void setSearchResults(List<T> searchResults)
+	public void setUserId(long userId)
 	{
-		this.searchResults = searchResults;
+		this.userId = userId;
 	}
 }
